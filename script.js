@@ -25,7 +25,7 @@ rendertime()
 
 // Check DOM Contents Loading Status
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('App ready!');
+  console.log('App ready!')
 
   // Main App Logic
 
@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let tasks = []
 
   const renderTasks = () => {
-    const taskList = tasks.map((task, i) => `
+    const taskList = tasks.map((taskObj, i) => `
       <div class="task border" data-task-id="${i}">
-        <input type="checkbox">
-        <span>${task}</span>
+        <input type="checkbox" ${taskObj.isChecked ? 'checked' : ''}>
+        <span class="${taskObj.isChecked ? 'task-done' : ''}">${taskObj.task}</span>
         <button class="del-btn">X</button>
       </div>`).join("")
     taskListSection.innerHTML = taskList
@@ -60,18 +60,22 @@ document.addEventListener('DOMContentLoaded', () => {
       tasks.splice(taskId, 1)
       renderTasks()
     } else if (tag === 'INPUT') {
-      // Mark task-done
-      parentEL.querySelector('span').classList.toggle('task-done')
+      // Toggle task-done
+      tasks[taskId].isChecked = !tasks[taskId].isChecked
+      renderTasks()
     }
   })
 
   // Add task logic with white space filter
   const addTask = () => {
-    const taskText = addTaskInput.value.trim();
+    const taskText = addTaskInput.value.trim()
       if (taskText !== '') {
-        tasks.push(taskText); 
-        renderTasks(); 
-        addTaskInput.value = '';
+        tasks.push({
+          task : taskText,
+          isChecked : false
+      })
+        renderTasks()
+        addTaskInput.value = ''
       }
   }
 
@@ -83,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') {
       addTask()
     }
-  });
+  })
 
   // Claer all task
   clearAllBtn.addEventListener('click', () => {
@@ -91,4 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTasks()
   })
 
-});
+})

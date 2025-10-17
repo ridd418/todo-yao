@@ -1,0 +1,231 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    border: none
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(345deg #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(45deg, #2C5364, #203A43, #0f2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: aliceblue;
+}
+
+#app, .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    min-height: 100vh;
+}
+
+.container {
+    /* border: red 4px solid; */
+    width: 90%;
+    
+}
+
+
+nav h1 {
+    font-size: 1.5rem;
+}
+
+main {
+    /* border: yellow 4px solid; */
+    margin-top: 10vh;
+    min-width: 100%;
+}
+
+.hero-section {
+    text-align: center;
+}
+
+.add-task-section {
+
+    /* border: purple 4px solid; */
+
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    flex: 1 50px;
+    justify-content: space-between;
+    border-radius: 50px;
+    min-width: 100%;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.add-task-section input {
+    font-size: 1rem;
+    flex: 1; 
+    padding: 16px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #000; 
+    outline: none;
+    /* transition: all 0.3s ease;  */
+    
+}
+
+.add-task-section button {
+    font-size: 2rem;
+    padding: 6px 20px;
+    max-width: 20%;
+    background-color: #0F2027; 
+    color: rgb(245, 245, 245, 0.8);          
+    cursor: pointer;       
+    /* transition: background-color 0.3s ease; */
+    
+}
+
+.widgets-section {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.clock {
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.widgets-section button {
+    padding: 0.8rem 1rem;
+    background-color: #0F2027; 
+    color: rgb(245, 245, 245, 0.8);          
+    cursor: pointer;       
+    transition: background-color 0.3s ease; /* Smooth background change */
+    border-radius: 2rem;
+}
+
+.task-list-section {
+    margin-top: 5%;
+
+    
+    max-height: 40vh;
+    overflow-y: scroll;
+    width: 100%;
+    /* border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); */
+
+    /* border: orange 4px solid; */
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    
+    margin-bottom: 0.5rem;
+
+    min-width: 0; /* ✅ allows children to shrink instead of breaking layout */
+}
+
+.task span {
+  flex: 1; /* take remaining space */
+  min-width: 0; /* ✅ necessary inside flex containers */
+  overflow-wrap: break-word; /* ✅ wraps long words */
+  word-break: break-word;
+  white-space: normal; /* ✅ wrap text */
+  color: inherit;
+}
+
+.task button {
+    margin-left: a;
+    padding: 0.8rem 1rem;
+    background-color: #0F2027; 
+    color: rgb(245, 245, 245, 0.8);          
+    cursor: pointer;       
+    transition: background-color 0.3s ease; /* Smooth background change */
+    border-radius: 2rem;
+}
+
+button:hover {
+    background-color: #2C5364; /* Darker blue on hover */
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: orange;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+input[type="checkbox"] {
+  /* Hide default checkbox */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border: 2px solid #2C5364;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.2); /* translucent background when unchecked */
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked {
+    background-color: rgb(16, 33, 40, 0.5);
+    border-color: #2C5364;
+    border: rgb(245, 245, 245, 0.5) 3px solid;
+}
+
+/* Checkmark */
+input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.slashed {
+    text-decoration: line-through;
+    opacity: 60%;
+}
+
+.border {
+    border-left: rgb(44, 83, 100, 0.5) 2px solid;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    border-right: rgb(44, 83, 100, 0.5) 2px solid;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}

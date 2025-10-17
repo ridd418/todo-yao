@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo-list</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    <!-- Your project’s UI goes here -->
+        <div class="container">
+            <header>
+                <nav>
+                    <h1>todo-yao</h1>
+                </nav>
+            </header>
+            <main>
+                <section class="hero-section">
+                    <h1>
+                        Just get it done!
+                    </h1>
+                </section>
+                <section class="add-task-section">
+                    <input type="text" placeholder="Add a task!" id="add-task-input">
+                    <button id="add-task-btn">></button>
+                </section>
+                <section class="widgets-section">
+                    <span>Your Tasks:</span>
+                    <div class="clock">
+                        <time id="date"></time>
+                        <time id="time"></time>
+                    </div>
+                    <button id="clear-all-btn">Clear all</button>
+                </section>
+                <section class="task-list-section" id="task-list-section">
+                    <div class="task border"><input type="checkbox"><span>Task 1</span><button>X</button></div>
+                    <div class="task border"><input type="checkbox"><span>Task 2</span><button>X</button></div>
+                    <div class="task border"><input type="checkbox"><span>Task 3</span><button>X</button></div>
+                </section>
+            </main>
+            <footer>
+                <p>todo-list by Ridd418</p>
+                <p>Checkout my <a href="#" target="_blank">GitHub</a></p>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

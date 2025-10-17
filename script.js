@@ -1,3 +1,4 @@
+// Date and Time, putting it outside DOMContentLoaded block ensures it is included in DOM Contents Loading Status Check.
 const rendertime = () => {
 
   const dateEl = document.getElementById('date')
@@ -5,15 +6,15 @@ const rendertime = () => {
 
   setInterval(() => {
     dateEl.textContent = new Date().toLocaleString('en-GB', {
-      weekday: 'short', // Day of the week (e.g. 'Wednesday')
-      year: 'numeric', // Full year (e.g. '2025')
-      month: 'short', // Full month name (e.g. 'October')
-      day: 'numeric', // Day of the month (e.g. '8')
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
     })
 
     timeEl.textContent = new Date().toLocaleString('en-GB', {
-      hour: '2-digit', // Hour in 24-hour format (e.g. '21')
-      minute: '2-digit', // Minute (e.g. '15')
+      hour: '2-digit',
+      minute: '2-digit',
     })
   }, 1000)
 
@@ -21,73 +22,20 @@ const rendertime = () => {
 
 rendertime()
 
+
+// Check DOM Contents Loading Status
 document.addEventListener('DOMContentLoaded', () => {
   console.log('App ready!');
-  // Your logic goes here
-  
+
+  // Main App Logic
+
   const addTaskInput = document.getElementById('add-task-input')
   const addTaskBtn = document.getElementById('add-task-btn')
   const taskListSection = document.getElementById('task-list-section')
   const clearAllBtn = document.getElementById('clear-all-btn')
   
-
+  // Empty array to store task
   let tasks = []
-  // let taskArr = ['task 1', 'task 2', 'task 3', 'task 4']
-  
-
-
-  // V1 Made the DOM update and delete button work
-
-  // const renderTasks = () => {
-  //   let taskList = ""
-  //   for (let i = 0; i < (tasks.length); i++)
-  //     taskList += `<div class="task border">
-  //                     <input type="checkbox">
-  //                     <span>${tasks[i]}</span>
-  //                     <button class="del-btn" data-task-id="${i}">X</button>
-  //                   </div>`
-  //   console.log(taskList)
-  //   taskListSection.innerHTML = taskList
-
-  //   const delBtns = taskListSection.querySelectorAll('.del-btn')
-  //   console.log(delBtns)
-  //   for (let btn of delBtns) {
-  //     console.log(btn)
-  //     btn.addEventListener('click', () => {
-  //       console.log('this log', Number(btn.getAttribute('data-task-id')))
-  //       console.log(tasks)
-  //       tasks.splice(Number(btn.getAttribute('data-task-id')), 1)
-  //       console.log(tasks)
-  //       renderTasks()
-  //     })
-  //   }
-  // }
-
-
-
-  // V2 Inporve the delete buttons code
-
-  // const renderTasks = () => {
-  //   let taskList = ""
-  //   for (let i = 0; i < (tasks.length); i++) {
-  //     taskList += `<div class="task border">
-  //                     <input type="checkbox">
-  //                     <span>${tasks[i]}</span>
-  //                     <button class="del-btn" data-task-id="${i}">X</button>
-  //                   </div>`
-  //   }
-  //   taskListSection.innerHTML = taskList
-  // }
-
-  
-  // taskListSection.addEventListener('click', (e) => {
-  //   tasks.splice(Number(e.target.getAttribute('data-task-id')), 1)
-  //   renderTasks()
-  // })
-
-
-
-  // V3 Inporved the DOM update code
 
   const renderTasks = () => {
     const taskList = tasks.map((task, i) => `
@@ -99,75 +47,45 @@ document.addEventListener('DOMContentLoaded', () => {
     taskListSection.innerHTML = taskList
   }
 
-  
+  // task-done and task-delete logic
   taskListSection.addEventListener('click', (e) => {
     const targetEL = e.target
     const parentEL = targetEL.parentElement
     const tag = targetEL.tagName
     const taskId = Number(parentEL.getAttribute('data-task-id'))
+
+    // Click target validation
     if (tag === 'BUTTON'){
+      // Delete task by removing taskID index from tasks array
       tasks.splice(taskId, 1)
       renderTasks()
     } else if (tag === 'INPUT') {
-      const ifChecked = targetEL.checked
-      const spanEL = parentEL.querySelector('span')
-      if (ifChecked) {
-        // add the 'task-done' class to the child span element
-        spanEL.classList.add('task-done')
-      }else {
-        // remove the 'task-done' calss from the child span element.
-        spanEL.classList.remove('task-done')
-      }
+      // Mark task-done
+      parentEL.querySelector('span').classList.toggle('task-done')
     }
-    // console.log(tag)
   })
 
-
-  // From ChatGPT: For reference only, the code is broken but the code above was made from referencing this.
-
-  // const renderTasks = () => {
-  //   let taskList = ""
-  //   for (let i = 0; i < tasks.length; i++) 
-  //     taskList += `<div class="task border">
-  //                   <input type="checkbox">
-  //                   <span>${tasks[i]}</span>
-  //                   <button class="del-btn" data-task-id="${i}">X</button>
-  //                 </div>`
-
-  //   taskListSection.innerHTML = taskList  // Update the DOM with new task list
-
-  //   // Attach one event listener to the parent container for all delete buttons
-  //   taskListSection.addEventListener('click', (e) => {
-  //     if (e.target && e.target.classList.contains('del-btn')) {
-  //       const taskId = Number(e.target.getAttribute('data-task-id'))  // Get the task ID
-  //       tasks.splice(taskId, 1)  // Remove the task from the array
-  //       renderTasks()  // Re-render tasks after deletion
-  //     }
-  //   })
-  // }
-
-
-  addTaskInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const taskText = addTaskInput.value.trim();
+  // Add task logic with white space filter
+  const addTask = () => {
+    const taskText = addTaskInput.value.trim();
       if (taskText !== '') {
         tasks.push(taskText); 
         renderTasks(); 
-        addTaskInput.value = ''; // Clear the input field after adding the task
+        addTaskInput.value = '';
       }
+  }
+
+  // Adds task
+  addTaskBtn.addEventListener('click', addTask)
+
+  // Adds task on Enter key press
+  addTaskInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      addTask()
     }
   });
 
-  addTaskBtn.addEventListener('click', () => {
-    const taskText = addTaskInput.value.trim()
-    if (taskText != ''){
-      tasks.push(taskText)
-      renderTasks()
-      addTaskInput.value = ''; // Clear the input field after adding the task
-    }
-
-  })
-
+  // Claer all task
   clearAllBtn.addEventListener('click', () => {
     tasks = []
     renderTasks()

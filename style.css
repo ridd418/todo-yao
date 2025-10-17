@@ -1,10 +1,11 @@
 /* Basic reset */
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Quicksand", sans-serif;
-    border: none
+    border: none;
+    outline: none;
 }
 
 html {
@@ -13,52 +14,52 @@ html {
 
 body {
 
-    background: #0F2027;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(345deg #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(45deg, #2C5364, #203A43, #0f2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: aliceblue;
+    background-color: aliceblue;
+    color: #0F2027; 
+
 }
 
-#app, .container {
+#app {
     display: flex;
     align-items: center;
     flex-direction: column;
-
+    justify-content: space-between;
     min-height: 100vh;
+    border: red 2px solid;
 }
 
-.container {
-    /* border: red 4px solid; */
-    width: 90%;
-    
+header {
+    background-color: #0F2027;
+    color: aliceblue; 
+    width: 100%;
+    padding: 8% 0;
+    text-align: center;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
-
 
 nav h1 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
+
 
 main {
-    /* border: yellow 4px solid; */
-    margin-top: 10vh;
-    min-width: 100%;
-}
-
-.hero-section {
+    border: yellow 2px solid;
+    width: 90%;
+    flex: 1;
     text-align: center;
 }
 
+.hero-section {
+    margin-top: 15%;
+}
+
 .add-task-section {
-
-    /* border: purple 4px solid; */
-
     margin-top: 10%;
     display: flex;
     flex-direction: row;
-    flex: 1 50px;
     justify-content: space-between;
     border-radius: 50px;
-    min-width: 100%;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -69,8 +70,6 @@ main {
     padding: 16px 16px;
     background: rgba(255, 255, 255, 0.2);
     color: #000; 
-    outline: none;
-    /* transition: all 0.3s ease;  */
     
 }
 
@@ -78,36 +77,35 @@ main {
     font-size: 2rem;
     padding: 6px 20px;
     max-width: 20%;
-    background-color: #0F2027; 
-    color: rgb(245, 245, 245, 0.8);          
+    background-color: #0F2027;
+    color: aliceblue;        
     cursor: pointer;       
     /* transition: background-color 0.3s ease; */
     
 }
 
 .widgets-section {
-    margin-top: 10%;
+    margin-top: 8%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0.5rem;
-}
-
-.clock {
-    font-size: 0.8rem;
-    display: flex;
-    flex-direction: column;
+    justify-content: left;
     align-items: center;
     gap: 0.5rem;
+
+}
+
+time {
+    font-size: 1rem;
+
 }
 
 .widgets-section button {
     padding: 0.8rem 1rem;
-    background-color: #0F2027; 
-    color: rgb(245, 245, 245, 0.8);          
+    background-color: #0F2027;
+    color: aliceblue;     
     cursor: pointer;       
     transition: background-color 0.3s ease; /* Smooth background change */
     border-radius: 2rem;
+    margin-left: auto;
 }
 
 .task-list-section {
@@ -121,6 +119,8 @@ main {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); */
 
     /* border: orange 4px solid; */
+
+    text-align: justify;
 }
 
 .task {
@@ -150,21 +150,26 @@ main {
 .task button {
     margin-left: a;
     padding: 0.8rem 1rem;
-    background-color: #0F2027; 
-    color: rgb(245, 245, 245, 0.8);          
+    background-color: #0F2027;
+    color: aliceblue;         
     cursor: pointer;       
     transition: background-color 0.3s ease; /* Smooth background change */
     border-radius: 2rem;
 }
 
 button:hover {
-    background-color: #2C5364; /* Darker blue on hover */
+    background-color: slategray;
+    color: #0F2027;
 }
 
 footer {
-    margin-top: auto;
+    background-color: #0F2027;
+    color: aliceblue; 
+    width: 100%;
+    padding: 5%;
     text-align: center;
-    padding: 1rem 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 footer a {
@@ -188,7 +193,7 @@ input[type="checkbox"] {
   height: 1.2rem;
   border: 2px solid #2C5364;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.2); /* translucent background when unchecked */
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   position: relative;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -220,12 +225,12 @@ input[type="checkbox"]:checked::after {
 }
 
 .border {
-    border-left: rgb(44, 83, 100, 0.5) 2px solid;
+    /* border-left: rgb(44, 83, 100, 0.5) 2px solid;
     border-top-left-radius: 2rem;
     border-bottom-left-radius: 2rem;
     border-right: rgb(44, 83, 100, 0.5) 2px solid;
     border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-bottom-right-radius: 2rem; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background: rgba(255, 255, 255, 0.05);
 }

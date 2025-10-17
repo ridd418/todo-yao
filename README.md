@@ -1,4 +1,4 @@
-#  ✅ To-Do List App
+#  ✅ To-Do List App (todo-yao)
 
 ## 📸 Screenshots
 
@@ -19,7 +19,7 @@ A simple web based todo list using HTML, CSS and JavaScript.
     
 * Clicking delete removes the task
     
-* Tasks persist visually until page refresh (no storage yet))
+* Tasks persist visually until page refresh (no storage yet)
 
     **Stretch Goals**
 
@@ -47,9 +47,9 @@ A simple web based todo list using HTML, CSS and JavaScript.
 
 - Add localStorage
     
-- Add timestamps for each teaks
+- Add timestamps for each task
 
-- Add a popup to add default taks, greeting etc
+- Add a popup to add default task, greeting etc
 
 ---
 

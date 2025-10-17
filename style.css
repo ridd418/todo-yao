@@ -214,7 +214,7 @@ input[type="checkbox"]:checked::after {
   transform: rotate(45deg);
 }
 
-.slashed {
+.task-done {
     text-decoration: line-through;
     opacity: 60%;
 }

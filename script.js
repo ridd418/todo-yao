@@ -91,18 +91,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderTasks = () => {
     const taskList = tasks.map((task, i) => `
-      <div class="task border">
+      <div class="task border" data-task-id="${i}">
         <input type="checkbox">
         <span>${task}</span>
-        <button class="del-btn" data-task-id="${i}">X</button>
+        <button class="del-btn">X</button>
       </div>`).join("")
     taskListSection.innerHTML = taskList
   }
 
   
   taskListSection.addEventListener('click', (e) => {
-    tasks.splice(Number(e.target.getAttribute('data-task-id')), 1)
-    renderTasks()
+    const targetEL = e.target
+    const parentEL = targetEL.parentElement
+    const tag = targetEL.tagName
+    const taskId = Number(parentEL.getAttribute('data-task-id'))
+    if (tag === 'BUTTON'){
+      tasks.splice(taskId, 1)
+      renderTasks()
+    } else if (tag === 'INPUT') {
+      const ifChecked = targetEL.checked
+      const spanEL = parentEL.querySelector('span')
+      if (ifChecked) {
+        // add the 'task-done' class to the child span element
+        spanEL.classList.add('task-done')
+      }else {
+        // remove the 'task-done' calss from the child span element.
+        spanEL.classList.remove('task-done')
+      }
+    }
+    // console.log(tag)
   })
 
 

@@ -1,3 +1,26 @@
+const rendertime = () => {
+
+  const dateEl = document.getElementById('date')
+  const timeEl = document.getElementById('time')
+
+  setInterval(() => {
+    dateEl.textContent = new Date().toLocaleString('en-GB', {
+      weekday: 'short', // Day of the week (e.g. 'Wednesday')
+      year: 'numeric', // Full year (e.g. '2025')
+      month: 'short', // Full month name (e.g. 'October')
+      day: 'numeric', // Day of the month (e.g. '8')
+    })
+
+    timeEl.textContent = new Date().toLocaleString('en-GB', {
+      hour: '2-digit', // Hour in 24-hour format (e.g. '21')
+      minute: '2-digit', // Minute (e.g. '15')
+    })
+  }, 1000)
+
+}
+
+rendertime()
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('App ready!');
   // Your logic goes here
